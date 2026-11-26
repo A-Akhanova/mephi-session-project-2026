@@ -1,0 +1,5 @@
+user1: PAM code 0 (Success)
+user2: PAM code 0 (Success)
+user3: PAM code 0 (Success)
+curator1: PAM code 7 (Authentication failure)
+curator2: PAM code 7 (Authentication failure)

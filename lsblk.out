@@ -1,0 +1,9 @@
+NAME   FSTYPE LABEL      SIZE MOUNTPOINT
+sda                       24G 
+|-sda1 vfat              600M /boot/efi
+|-sda2 ext4                1G /boot
+|-sda3 swap              2.4G [SWAP]
+`-sda4 ext4               20G /
+sdb                        1G 
+`-sdb1 ext4   MEPHI_WEB 1022M /mephi-web
+zram0                    2.4G [SWAP]

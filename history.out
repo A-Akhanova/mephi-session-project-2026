@@ -1,0 +1,389 @@
++ [[ setup == setup ]]
++ disk=/dev/sdb
++ [[ /dev/sdb == /dev/sdb ]]
+++ lsblk -dn -o TYPE /dev/sdb
++ [[ disk == disk ]]
++ ping -c 4 -W 2 8.8.8.8
++ ip -4 -br address
++ ip -4 route
++ nmcli -t -f GENERAL.DEVICE,GENERAL.CONNECTION,IP4.ADDRESS,DHCP4.OPTION device show
++ dnf -y upgrade --refresh
++ dnf -y install nginx libcap-ng-utils libcap acl policycoreutils-python-utils libpwquality libpcap e2fsprogs util-linux sudo passwd dnf-plugins-core
+++ mktemp -d /tmp/mephi-rpm.XXXXXX
++ rpmdir=/tmp/mephi-rpm.XNh6tT
++ dnf download --destdir /tmp/mephi-rpm.XNh6tT tcpdump
++ mapfile -t packages
+++ find /tmp/mephi-rpm.XNh6tT -maxdepth 1 -type f -name 'tcpdump-*.rpm'
++ [[ 2 == 1 ]]
++ trap 'printf "Step failed at line %s (exit %s)\n" "$LINENO" "$?" >&2' ERR
++ [[ setup == setup ]]
++ disk=/dev/sdb
++ [[ /dev/sdb == /dev/sdb ]]
+++ lsblk -dn -o TYPE /dev/sdb
++ [[ disk == disk ]]
++ ping -c 4 -W 2 8.8.8.8
++ ip -4 -br address
++ ip -4 route
++ nmcli -t -f GENERAL.DEVICE,GENERAL.CONNECTION,IP4.ADDRESS,DHCP4.OPTION device show
++ dnf -y upgrade --refresh
++ rpm -q redos-release-identity-education-desktop
++ dnf -y swap redos-release-identity-education-desktop redos-release-identity-standard-server-minimal
++ rpm -q redos-release-education
++ rpm -q --whatrequires redos-release-education
++ dnf -y --setopt=clean_requirements_on_remove=False remove redos-release-education
++ dnf -y install nginx libcap-ng-utils libcap acl policycoreutils-python-utils libpwquality libpcap e2fsprogs util-linux sudo passwd dnf-plugins-core
+++ mktemp -d /tmp/mephi-rpm.XXXXXX
++ rpmdir=/tmp/mephi-rpm.P3UrPL
++ dnf download --destdir /tmp/mephi-rpm.P3UrPL tcpdump.x86_64
++ mapfile -t packages
+++ find /tmp/mephi-rpm.P3UrPL -maxdepth 1 -type f -name 'tcpdump-*.rpm'
++ [[ 1 == 1 ]]
++ rpm -Uvh --replacepkgs /tmp/mephi-rpm.P3UrPL/tcpdump-4.99.5-1.red80.x86_64.rpm
++ rpm -q nginx libcap-ng-utils tcpdump
++ rpm -K /tmp/mephi-rpm.P3UrPL/tcpdump-4.99.5-1.red80.x86_64.rpm
+++ basename /tmp/mephi-rpm.P3UrPL/tcpdump-4.99.5-1.red80.x86_64.rpm
++ install -m 0644 /tmp/mephi-rpm.P3UrPL/tcpdump-4.99.5-1.red80.x86_64.rpm /var/tmp/mephi-session-evidence/tcpdump-4.99.5-1.red80.x86_64.rpm
++ blkid -L MEPHI_WEB
+++ lsblk -nr -o NAME /dev/sdb
+++ wc -l
++ [[ 1 == 1 ]]
+++ wipefs --no-act --noheadings /dev/sdb
++ [[ -z '' ]]
++ printf 'label: gpt\n,,L\n'
++ sfdisk --wipe never --wipe-partitions never /dev/sdb
++ udevadm settle
+++ lsblk -lnpo NAME,TYPE /dev/sdb
+++ awk '$2 == "part" {print $1}'
++ part=/dev/sdb1
++ [[ /dev/sdb1 == /dev/sdb1 ]]
++ mkfs.ext4 -L MEPHI_WEB /dev/sdb1
+++ blkid -L MEPHI_WEB
++ [[ /dev/sdb1 == /dev/sdb1 ]]
++ install -d -m 0755 /mephi-web
++ grep -q '^LABEL=MEPHI_WEB[[:space:]]' /etc/fstab
++ printf '\nLABEL=MEPHI_WEB /mephi-web ext4 defaults 0 2\n'
++ systemctl daemon-reload
++ mountpoint -q /mephi-web
++ mount /mephi-web
+++ findmnt -n -o SOURCE --target /mephi-web
++ [[ /dev/sdb1 == /dev/sdb1 ]]
++ getent group developers
++ groupadd developers
++ getent group curators
++ groupadd -g 4444 curators
+++ getent group curators
+++ cut -d: -f3
++ [[ 4444 == 4444 ]]
++ for index in 1 2 3
++ name=user1
++ id user1
++ useradd -m -u 5501 -g developers user1
+++ id -u user1
++ [[ 5501 == \5\5\0\1 ]]
+++ id -gn user1
++ [[ developers == developers ]]
++ for index in 1 2 3
++ name=user2
++ id user2
++ useradd -m -u 5502 -g developers user2
+++ id -u user2
++ [[ 5502 == \5\5\0\2 ]]
+++ id -gn user2
++ [[ developers == developers ]]
++ for index in 1 2 3
++ name=user3
++ id user3
++ useradd -m -u 5503 -g developers user3
+++ id -u user3
++ [[ 5503 == \5\5\0\3 ]]
+++ id -gn user3
++ [[ developers == developers ]]
++ for name in curator1 curator2
++ id curator1
++ useradd -m -g curators curator1
+++ id -gn curator1
++ [[ curators == curators ]]
++ for name in curator1 curator2
++ id curator2
++ useradd -m -g curators curator2
+++ id -gn curator2
++ [[ curators == curators ]]
++ install -d -m 0755 /data
++ install -d -o root -g developers -m 2770 /data/mephi-2026
++ setfacl -m g:curators:r-x,m:rwx,o:---,d:u::rwx,d:g::rwx,d:g:curators:r-x,d:m:rwx,d:o::--- /data/mephi-2026
++ check_access
++ local sample=/data/mephi-2026/verification.txt
++ [[ ! -e /data/mephi-2026/verification.txt ]]
++ runuser -u user1 -- sh -c 'umask 077; printf "created by user1\n" > "$1"' sh /data/mephi-2026/verification.txt
++ runuser -u user2 -- sh -c 'printf "modified by user2\n" >> "$1"' sh /data/mephi-2026/verification.txt
++ runuser -u user3 -- sh -c 'printf "modified by user3\n" >> "$1"' sh /data/mephi-2026/verification.txt
++ getfacl -p /data/mephi-2026 /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user1 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user1 -- test -w /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user2 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user2 -- test -w /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user3 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user3 -- test -w /data/mephi-2026/verification.txt
++ for curator in curator1 curator2
++ runuser -u curator1 -- cat /data/mephi-2026/verification.txt
++ runuser -u curator1 -- test -w /data/mephi-2026/verification.txt
++ runuser -u curator1 -- test -w /data/mephi-2026
++ for curator in curator1 curator2
++ runuser -u curator2 -- cat /data/mephi-2026/verification.txt
++ runuser -u curator2 -- test -w /data/mephi-2026/verification.txt
++ runuser -u curator2 -- test -w /data/mephi-2026
++ runuser -u nobody -- test -r /data/mephi-2026/verification.txt
++ runuser -u nobody -- test -x /data/mephi-2026
++ printf '%s\n' 'PASS: developers can write, curators can read, unrelated users have no access.'
++ binary=/usr/sbin/tcpdump
++ [[ -x /usr/sbin/tcpdump ]]
++ chown root:developers /usr/sbin/tcpdump
++ chmod 0750 /usr/sbin/tcpdump
++ setcap cap_net_raw=ep /usr/sbin/tcpdump
++ capture_loopback
++ local binary=/usr/sbin/tcpdump
++ local capture_pid=29092
++ for attempt in {1..25}
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ timeout 12s runuser -u user1 -- /usr/sbin/tcpdump -p -i lo -nn -U -c 1 'icmp and host 127.0.0.1'
++ kill -0 29092
++ sleep .2
++ for attempt in {1..25}
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ break
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ ping -c 1 -W 2 127.0.0.1
++ wait 29092
++ grep -q '1 packet captured' /var/tmp/mephi-session-evidence/tcpdump.out
+++ getenforce
++ [[ Enforcing == Enforcing ]]
++ printf 'Hello from Student: %s\n' 149
++ chmod 0644 /mephi-web/index.html
++ semanage fcontext -a -t httpd_sys_content_t '/mephi-web(/.*)?'
++ restorecon -RF /mephi-web
++ [[ -e /etc/nginx/nginx.conf.mephi-original ]]
++ cp -p /etc/nginx/nginx.conf /etc/nginx/nginx.conf.mephi-original
++ cat
++ nginx -t
++ systemctl enable --now nginx
++ pam_rule='account requisite pam_succeed_if.so quiet user notingroup curators'
++ grep -Fxq 'account requisite pam_succeed_if.so quiet user notingroup curators' /etc/pam.d/login
++ sed -i '2iaccount requisite pam_succeed_if.so quiet user notingroup curators' /etc/pam.d/login
++ sed -i -E 's/^[[:space:]]*PASS_MAX_DAYS[[:space:]]+.*/PASS_MAX_DAYS 90/' /etc/login.defs
++ grep -Eq '^PASS_MAX_DAYS[[:space:]]+90$' /etc/login.defs
++ sed -i -E '/^[[:space:]#]*(minlen|dcredit|ucredit|lcredit|ocredit)[[:space:]]*=/d' /etc/security/pwquality.conf
++ printf '\nminlen = 12\ndcredit = 0\nucredit = 0\nlcredit = 0\nocredit = 0\n'
++ grep -Eq '^[^#]+pam_pwquality\.so' /etc/pam.d/system-auth /etc/pam.d/passwd
++ chage -M 90 labadmin
++ for name in "${users[@]}"
++ chage -M 90 user1
++ for name in "${users[@]}"
++ chage -M 90 user2
++ for name in "${users[@]}"
++ chage -M 90 user3
++ for name in "${users[@]}"
++ chage -M 90 curator1
++ for name in "${users[@]}"
++ chage -M 90 curator2
++ set +x
++ cat /proc/sys/kernel/random/boot_id
++ curl --noproxy '*' -fsS http://localhost/
++ grep -Fxq 'Hello from Student: 149' /var/tmp/mephi-session-evidence/curl.out
++ trap 'printf "Step failed at line %s (exit %s)\n" "$LINENO" "$?" >&2' ERR
++ [[ verify == setup ]]
++ [[ verify == verify ]]
+++ cat /proc/sys/kernel/random/boot_id
+++ cat /var/tmp/mephi-session-evidence/initial-boot.out
++ [[ 3bcf255f-05e3-4000-8939-69d491039019 != 2474a99f-1d0d-45e7-a4b2-01c84b4dd5d7 ]]
++ mountpoint -q /mephi-web
+++ findmnt -n -o SOURCE --target /mephi-web
++ [[ /dev/sdb1 == /dev/sdb1 ]]
++ systemctl is-enabled nginx
++ systemctl is-active nginx
+++ getenforce
++ [[ Enforcing == Enforcing ]]
++ getenforce
++ dnf history
++ journalctl -u nginx -b --no-pager
++ stat /data/mephi-2026 /mephi-web
++ findmnt /mephi-web
++ lsblk -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT
++ ls -ldZ /mephi-web /mephi-web/index.html
++ check_access
++ local sample=/data/mephi-2026/verification.txt
++ [[ ! -e /data/mephi-2026/verification.txt ]]
++ getfacl -p /data/mephi-2026 /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user1 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user1 -- test -w /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user2 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user2 -- test -w /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user3 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user3 -- test -w /data/mephi-2026/verification.txt
++ for curator in curator1 curator2
++ runuser -u curator1 -- cat /data/mephi-2026/verification.txt
++ runuser -u curator1 -- test -w /data/mephi-2026/verification.txt
++ runuser -u curator1 -- test -w /data/mephi-2026
++ for curator in curator1 curator2
++ runuser -u curator2 -- cat /data/mephi-2026/verification.txt
++ runuser -u curator2 -- test -w /data/mephi-2026/verification.txt
++ runuser -u curator2 -- test -w /data/mephi-2026
++ runuser -u nobody -- test -r /data/mephi-2026/verification.txt
++ runuser -u nobody -- test -x /data/mephi-2026
++ printf '%s\n' 'PASS: developers can write, curators can read, unrelated users have no access.'
++ check_console_login
++ python3 -
++ getcap /usr/sbin/tcpdump
++ capture_loopback
++ local binary=/usr/sbin/tcpdump
++ local capture_pid=909
++ for attempt in {1..25}
++ timeout 12s runuser -u user1 -- /usr/sbin/tcpdump -p -i lo -nn -U -c 1 'icmp and host 127.0.0.1'
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ kill -0 909
++ sleep .2
++ for attempt in {1..25}
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ break
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ ping -c 1 -W 2 127.0.0.1
++ wait 909
++ grep -q '1 packet captured' /var/tmp/mephi-session-evidence/tcpdump.out
++ curl --noproxy '*' -fsS http://localhost/
++ grep -Fxq 'Hello from Student: 149' /var/tmp/mephi-session-evidence/curl.out
++ cat /etc/os-release
++ uname -r
++ systemctl get-default
++ hostnamectl --static
++ cat /proc/sys/kernel/random/boot_id
++ install -d -m 0755 /var/tmp/mephi-session-evidence/etc/security /var/tmp/mephi-session-evidence/etc/pam.d /var/tmp/mephi-session-evidence/etc/nginx
++ grep '^LABEL=MEPHI_WEB[[:space:]]' /etc/fstab
++ getent passwd user1 user2 user3 curator1 curator2
++ awk -F: 'BEGIN{OFS=":"} $1 ~ /^(user[123]|curator[12])$/ {$2="!"; print}' /etc/shadow
++ getent group developers curators
++ cp /etc/security/pwquality.conf /var/tmp/mephi-session-evidence/etc/security/pwquality.conf
++ cp /etc/pam.d/login /var/tmp/mephi-session-evidence/etc/pam.d/login
++ cp /etc/nginx/nginx.conf /var/tmp/mephi-session-evidence/etc/nginx/nginx.conf
++ chvt 3
++ systemctl start getty@tty3.service
++ sleep 1
++ printf '\033[2J\033[H'
++ printf '%s\n' 'MEPhI | GNU/Linux security session project' ''
++ grep '^PRETTY_NAME=' /etc/os-release
++ printf '%s\n' '' '$ hostname -f'
++ hostname -f
++ printf '%s\n' '' '$ getenforce'
++ getenforce
++ printf '%s\n' '' '$ findmnt /mephi-web'
++ findmnt /mephi-web
++ printf '%s\n' '' '$ curl http://localhost/'
++ curl --noproxy '*' -fsS http://localhost/
++ trap 'printf "Step failed at line %s (exit %s)\n" "$LINENO" "$?" >&2' ERR
++ [[ update-page == setup ]]
++ [[ update-page == update-page ]]
++ mountpoint -q /mephi-web
+++ findmnt -n -o SOURCE --target /mephi-web
++ [[ /dev/sdb1 == /dev/sdb1 ]]
++ printf 'Hello from Student: %s\n' $'\320\234265938'
++ restorecon /mephi-web/index.html
++ curl --noproxy '*' -fsS http://localhost/
++ grep -Fxq 'Hello from Student: М265938' /var/tmp/mephi-session-evidence/curl.out
++ trap 'printf "Step failed at line %s (exit %s)\n" "$LINENO" "$?" >&2' ERR
++ [[ verify == setup ]]
++ [[ verify == update-page ]]
++ [[ verify == verify ]]
+++ cat /proc/sys/kernel/random/boot_id
+++ cat /var/tmp/mephi-session-evidence/initial-boot.out
++ [[ a9c97a53-0c21-4ebd-ad54-3f3a0b996704 != 2474a99f-1d0d-45e7-a4b2-01c84b4dd5d7 ]]
++ mountpoint -q /mephi-web
+++ findmnt -n -o SOURCE --target /mephi-web
++ [[ /dev/sdb1 == /dev/sdb1 ]]
++ systemctl is-enabled nginx
++ systemctl is-active nginx
+++ getenforce
++ [[ Enforcing == Enforcing ]]
++ getenforce
++ dnf history
++ journalctl -u nginx -b --no-pager
++ stat /data/mephi-2026 /mephi-web
++ findmnt /mephi-web
++ lsblk -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT
++ ls -ldZ /mephi-web /mephi-web/index.html
++ check_access
++ local sample=/data/mephi-2026/verification.txt
++ [[ ! -e /data/mephi-2026/verification.txt ]]
++ getfacl -p /data/mephi-2026 /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user1 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user1 -- test -w /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user2 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user2 -- test -w /data/mephi-2026/verification.txt
++ for developer in user1 user2 user3
++ runuser -u user3 -- test -r /data/mephi-2026/verification.txt
++ runuser -u user3 -- test -w /data/mephi-2026/verification.txt
++ for curator in curator1 curator2
++ runuser -u curator1 -- cat /data/mephi-2026/verification.txt
++ runuser -u curator1 -- test -w /data/mephi-2026/verification.txt
++ runuser -u curator1 -- test -w /data/mephi-2026
++ for curator in curator1 curator2
++ runuser -u curator2 -- cat /data/mephi-2026/verification.txt
++ runuser -u curator2 -- test -w /data/mephi-2026/verification.txt
++ runuser -u curator2 -- test -w /data/mephi-2026
++ runuser -u nobody -- test -r /data/mephi-2026/verification.txt
++ runuser -u nobody -- test -x /data/mephi-2026
++ printf '%s\n' 'PASS: developers can write, curators can read, unrelated users have no access.'
++ check_console_login
++ python3 -
++ getcap /usr/sbin/tcpdump
++ capture_loopback
++ local binary=/usr/sbin/tcpdump
++ local capture_pid=916
++ for attempt in {1..25}
++ timeout 12s runuser -u user1 -- /usr/sbin/tcpdump -p -i lo -nn -U -c 1 'icmp and host 127.0.0.1'
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ kill -0 916
++ sleep .2
++ for attempt in {1..25}
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ break
++ grep -q 'listening on lo' /var/tmp/mephi-session-evidence/tcpdump.out
++ ping -c 1 -W 2 127.0.0.1
++ wait 916
++ grep -q '1 packet captured' /var/tmp/mephi-session-evidence/tcpdump.out
++ curl --noproxy '*' -fsS http://localhost/
++ grep -Fxq 'Hello from Student: М265938' /var/tmp/mephi-session-evidence/curl.out
++ cat /etc/os-release
++ uname -r
++ systemctl get-default
++ hostnamectl --static
++ cat /proc/sys/kernel/random/boot_id
++ install -d -m 0755 /var/tmp/mephi-session-evidence/etc/security /var/tmp/mephi-session-evidence/etc/pam.d /var/tmp/mephi-session-evidence/etc/nginx
++ grep '^LABEL=MEPHI_WEB[[:space:]]' /etc/fstab
++ getent passwd user1 user2 user3 curator1 curator2
++ awk -F: 'BEGIN{OFS=":"} $1 ~ /^(user[123]|curator[12])$/ {$2="!"; print}' /etc/shadow
++ getent group developers curators
++ cp /etc/security/pwquality.conf /var/tmp/mephi-session-evidence/etc/security/pwquality.conf
++ cp /etc/pam.d/login /var/tmp/mephi-session-evidence/etc/pam.d/login
++ cp /etc/nginx/nginx.conf /var/tmp/mephi-session-evidence/etc/nginx/nginx.conf
++ chvt 3
++ systemctl start getty@tty3.service
++ sleep 1
++ [[ М265938 == М* ]]
++ setfont -C /dev/tty3 latarcyrheb-sun16
++ printf '\033[2J\033[H'
++ printf '%s\n' 'MEPhI | GNU/Linux security session project' ''
++ grep '^PRETTY_NAME=' /etc/os-release
++ printf '%s\n' '' '$ hostname -f'
++ hostname -f
++ printf '%s\n' '' '$ getenforce'
++ getenforce
++ printf '%s\n' '' '$ findmnt /mephi-web'
++ findmnt /mephi-web
++ printf '%s\n' '' '$ curl http://localhost/'
++ curl --noproxy '*' -fsS http://localhost/

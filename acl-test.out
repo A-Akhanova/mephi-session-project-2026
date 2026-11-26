@@ -1,0 +1,31 @@
+# file: /data/mephi-2026
+# owner: root
+# group: developers
+# flags: -s-
+user::rwx
+group::rwx
+group:curators:r-x
+mask::rwx
+other::---
+default:user::rwx
+default:group::rwx
+default:group:curators:r-x
+default:mask::rwx
+default:other::---
+
+# file: /data/mephi-2026/verification.txt
+# owner: user1
+# group: developers
+user::rw-
+group::rwx	#effective:rw-
+group:curators:r-x	#effective:r--
+mask::rw-
+other::---
+
+created by user1
+modified by user2
+modified by user3
+created by user1
+modified by user2
+modified by user3
+PASS: developers can write, curators can read, unrelated users have no access.

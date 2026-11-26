@@ -1,0 +1,7 @@
+ID     | Command line             | Date and time    | Action(s)      | Altered
+-------------------------------------------------------------------------------
+     5 | -y --setopt=clean_requir | 2026-11-26 00:20 | Removed        |    1   
+     4 | -y swap redos-release-id | 2026-11-26 00:20 | E, I           |    3   
+     3 | -y install nginx libcap- | 2026-11-26 00:19 | Install        |   17 EE
+     2 | -y upgrade --refresh     | 2026-11-26 00:18 | I, O, U        |  166 E<
+     1 |                          | 2026-11-26 00:10 | Install        |  462 >E
